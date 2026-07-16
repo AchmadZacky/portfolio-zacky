@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import projects from "../data/projects";
+import { getImagePath } from "../utils/imagePath"; // ← Import utility
 
 const ProjectDetailPage = () => {
   const { id } = useParams();
@@ -8,7 +9,6 @@ const ProjectDetailPage = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Reset ke gambar pertama saat proyek berubah
   useEffect(() => {
     setCurrentImage(0);
   }, [id]);
@@ -48,7 +48,6 @@ const ProjectDetailPage = () => {
     setTimeout(() => setIsTransitioning(false), 400);
   };
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "ArrowRight") nextImage();
@@ -61,7 +60,6 @@ const ProjectDetailPage = () => {
   return (
     <section className="pt-28 pb-20 bg-[var(--bg-primary)] min-h-screen">
       <div className="max-w-4xl mx-auto px-4 md:px-8">
-        {/* Tombol Kembali */}
         <Link
           to="/#projects"
           className="inline-flex items-center text-[var(--text-secondary)] hover:text-[var(--gradient-start)] transition-colors mb-6 group"
@@ -75,7 +73,6 @@ const ProjectDetailPage = () => {
         <div className="bg-[var(--bg-secondary)] rounded-2xl shadow-ambient-low border border-[var(--border-color)]/30 overflow-hidden">
           {/* CAROUSEL */}
           <div className="relative w-full h-72 sm:h-96 md:h-[480px] bg-[var(--bg-container-low)] overflow-hidden">
-            {/* Gambar dengan transisi smooth */}
             <div
               className="w-full h-full transition-transform duration-500 ease-in-out flex"
               style={{
@@ -88,7 +85,7 @@ const ProjectDetailPage = () => {
                   className="w-full h-full flex-shrink-0 flex items-center justify-center bg-[var(--bg-container-low)]"
                 >
                   <img
-                    src={img}
+                    src={getImagePath(img)} // ← Gunakan getImagePath
                     alt={`${project.title} - ${index + 1}`}
                     className="w-full h-full object-contain"
                   />
@@ -96,7 +93,7 @@ const ProjectDetailPage = () => {
               ))}
             </div>
 
-            {/* Tombol Navigasi - SELALU TERLIHAT & LEBIH BESAR */}
+            {/* Tombol Navigasi */}
             {totalImages > 1 && (
               <>
                 <button
@@ -118,7 +115,6 @@ const ProjectDetailPage = () => {
                   </span>
                 </button>
 
-                {/* Indikator posisi (dot) */}
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
                   {images.map((_, index) => (
                     <button
@@ -154,7 +150,6 @@ const ProjectDetailPage = () => {
               </span>
             </div>
 
-            {/* Counter gambar (misal: 1/5) */}
             {totalImages > 1 && (
               <div className="absolute top-4 left-4 z-10 bg-black/60 text-white text-sm font-semibold px-4 py-1.5 rounded-full backdrop-blur-sm">
                 {currentImage + 1} / {totalImages}
@@ -168,7 +163,6 @@ const ProjectDetailPage = () => {
               {project.title}
             </h1>
 
-            {/* Tag Teknologi */}
             <div className="flex flex-wrap gap-2 mt-4">
               {project.tech.map((t, i) => (
                 <span
@@ -180,12 +174,10 @@ const ProjectDetailPage = () => {
               ))}
             </div>
 
-            {/* Deskripsi */}
             <p className="mt-6 font-['Inter'] text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
               {project.fullDescription}
             </p>
 
-            {/* Tombol Aksi */}
             <div className="flex flex-wrap gap-4 mt-8">
               {project.link && project.link !== "#" && (
                 <a
