@@ -83,7 +83,7 @@ const Hero = () => {
         <div className="relative z-10  md:w-full  md:aspect-square flex items-center justify-center group">
           <img
             className="w-full h-full object-contain object-bottom drop-shadow-2xl transition-all duration-700 group-hover:scale-105 group-hover:rotate-2"
-            src="/profiletr.png"
+            src="profiletr.png"
             alt="Achmad Zacky"
           />
           {/* Efek glow di bawah gambar */}
