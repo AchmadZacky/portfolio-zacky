@@ -1,3 +1,5 @@
+import { getImagePath } from "../utils/imagePath";
+
 const Hero = () => {
   return (
     <section
@@ -80,13 +82,12 @@ const Hero = () => {
         <div className="absolute inset-0 bg-[var(--surface-variant)] rounded-full blur-3xl opacity-50 z-0 animate-float"></div>
 
         {/* Container gambar dengan efek hover scale */}
-        <div className="relative z-10  md:w-full  md:aspect-square flex items-center justify-center group">
+        <div className="relative z-10 md:w-full md:aspect-square flex items-center justify-center group">
           <img
             className="w-full h-full object-contain object-bottom drop-shadow-2xl transition-all duration-700 group-hover:scale-105 group-hover:rotate-2"
-            src="profiletr.png"
+            src={getImagePath("profiletr.png")}
             alt="Achmad Zacky"
           />
-          {/* Efek glow di bawah gambar */}
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-1/4 bg-[var(--gradient-start)]/10 blur-2xl z-0 group-hover:opacity-75 transition-opacity duration-500"></div>
         </div>
       </div>

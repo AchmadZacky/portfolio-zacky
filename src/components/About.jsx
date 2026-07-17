@@ -1,3 +1,5 @@
+import { getImagePath } from "../utils/imagePath";
+
 const About = () => {
   // Ganti dengan path file CV Anda
   const cvPath = "/documents/CV-Achmad-Zacky-Haudaa.pdf";
@@ -72,7 +74,7 @@ const About = () => {
         <div className="w-full md:w-1/2">
           <img
             className="w-full rounded-2xl object-cover shadow-md h-[400px]"
-            src="about-img.png"
+            src={getImagePath("about-img.png")}
             alt="About Me"
           />
         </div>

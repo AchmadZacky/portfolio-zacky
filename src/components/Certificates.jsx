@@ -1,5 +1,6 @@
 import { useState } from "react";
 import certificates from "../data/certificates";
+import { getImagePath } from "../utils/imagePath";
 
 const Certificates = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -49,10 +50,7 @@ const Certificates = () => {
             {/* Gambar dengan object-contain */}
             <div className="w-full aspect-[4/3] bg-[var(--bg-container-low)] flex items-center justify-center p-4">
               <img
-                src={
-                  cert.image ||
-                  "https://via.placeholder.com/400x300?text=Certificate"
-                }
+                src={getImagePath(cert.image)}
                 alt={cert.name}
                 className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
               />

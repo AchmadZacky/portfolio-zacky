@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import projectsData from "../data/projects";
+import { getImagePath } from "../utils/imagePath";
 
 const Projects = () => {
   const [filter, setFilter] = useState("all");
@@ -95,7 +96,7 @@ const Projects = () => {
             {/* Gambar dengan overlay */}
             <div className="relative overflow-hidden w-full h-48 bg-[var(--bg-container-low)]">
               <img
-                src={project.image}
+                src={getImagePath(project.image)}
                 alt={project.title}
                 className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500 ease-out"
               />
